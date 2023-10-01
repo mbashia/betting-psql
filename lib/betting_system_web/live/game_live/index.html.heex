@@ -228,11 +228,13 @@ xt-base text-white align-top uppercase">betslip</span>
           <%= number_input(f, :odds, step: "any", type: "hidden", value: @total_odds) %>
           <%= error_tag(f, :odds) %>
 
-          <div id  ="submitbutton" class="ml-[120px] md:ml-6 bg-[#FA6838] w-[100px] rounded  p-2 mt-4">
+          <div
+            id="submitbutton"
+            class="ml-[120px] md:ml-6 bg-[#FA6838] w-[100px] rounded  p-2 mt-4"
+          >
             <%= submit("place bet",
               phx_disable_with: "Saving...",
-              class: " text-white poppins-regular",
-              
+              class: " text-white poppins-regular"
             ) %>
           </div>
         </.form>
