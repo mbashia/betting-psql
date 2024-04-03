@@ -23,6 +23,10 @@ defmodule BettingSystem.Bet do
     Repo.all(from b in Bets, where: b.user_id == ^id)
   end
 
+  def get_all_bets_by_filter(id, filter) do
+    Repo.all(from b in Bets, where: b.user_id == ^id and b.end_result == ^filter)
+  end
+
   def get_bet_by_betid(betid) do
     Repo.one(from b in Bets, where: b.bet_id == ^betid)
   end

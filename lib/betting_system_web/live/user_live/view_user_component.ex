@@ -97,6 +97,7 @@ defmodule BettingSystemWeb.UserLive.ViewUserComponent do
               <p>payout:<%= bet.payout %></p>
               <p style="color:brown;"><%= bet.status %></p>
               <p>result:<%= bet.end_result %></p>
+              <p>profit:<%= get_profit(bet.bet_id) %></p>
 
               <button
                 class="mont-600 text-lg hover:cursor-pointer"
@@ -154,5 +155,15 @@ defmodule BettingSystemWeb.UserLive.ViewUserComponent do
 
   def get_games(betid) do
     Bet.get_all_betslips_in_bet(betid)
+  end
+
+  def get_profit(betid) do
+    bet = Bet.get_bet_by_betid(betid)
+
+    case bet.end_result do
+      "won" -> "loss" <> bet.payout
+      "lost" -> "profit" <> bet.payout
+      "nothing" -> "Not Over Yet"
+    end
   end
 end

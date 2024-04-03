@@ -9,6 +9,8 @@ defmodule BettingSystemWeb.UserLive.Index do
   alias BettingSystem.Games
   alias BettingSystem.Betslips
   alias BettingSystem.Accounts.UserNotifier
+  alias Phoenix.LiveView.JS
+
   @impl true
   def mount(_params, session, socket) do
     # :timer.send_interval(20000, self(), :update_games)
@@ -77,6 +79,26 @@ defmodule BettingSystemWeb.UserLive.Index do
     socket
     |> assign(:page_title, "Listing users")
     |> assign(:sport, nil)
+  end
+
+  def get_games(betid) do
+    Bet.get_all_betslips_in_bet(betid)
+  end
+
+  def get_profit(betid) do
+    bet = Bet.get_bet_by_betid(betid)
+
+    case bet.end_result do
+      "won" -> "loss" <> bet.payout
+      "lost" -> "profit" <> bet.payout
+      "nothing" -> "Not Over Yet"
+    end
+  end
+
+  @impl true
+  def handle_event("filter_games", params, socket) do
+    bets = Bet.get_all_bets_by_filter(socket.assigns.user.id, params["filter"])
+    {:noreply, socket |> assign(:bets, bets)}
   end
 
   @impl true

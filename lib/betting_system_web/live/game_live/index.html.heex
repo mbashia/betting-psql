@@ -45,22 +45,28 @@
       <span>Highlights</span><span>Upcoming</span><span>Countries</span><span>Quick e</span>
     </div>
     <%= if @user.email == "mbashiavictor@gmail.com" do %>
-      <div class="mt-2 flex justify-between p-2 ">
+      <div class="mt-2 flex   p-2 ">
         <div class=" md:hidden " id="sidebar" onclick="toggleSidebar()">
           <%= Heroicons.icon("bars-3",
             type: "solid",
             class: "h-8  text-[#8A92AB] font-bold w-8"
           ) %>
         </div>
-
-        <%= live_patch(to: Routes.game_index_path(@socket, :new)) do %>
-          <button class="bg-green-500 flex gap-2 items-center text-white  rounded-md p-2">
-            <%= Heroicons.icon("plus",
-              type: "solid",
-              class: "h-8   font-bold w-8"
-            ) %> New Game
-          </button>
-        <% end %>
+        <div class=" w-[100%] px-6 items-center flex justify-between">
+          <%= live_patch(to: Routes.game_index_path(@socket, :new)) do %>
+            <button class="bg-green-500 flex gap-2 items-center text-white  rounded-md p-2">
+              <%= Heroicons.icon("plus",
+                type: "solid",
+                class: "h-8   font-bold w-8"
+              ) %> New Game
+            </button>
+          <% end %>
+          <%= live_patch(to: Routes.game_completed_path(@socket, :index)) do %>
+            <div class="text-white  rounded-lg bg-green-500 poppins-regular p-2 text-lg  hover:cursor-pointer">
+              View completed Games
+            </div>
+          <% end %>
+        </div>
       </div>
     <% end %>
     <div class="mt-2 h-[150px]">
