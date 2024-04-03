@@ -87,6 +87,8 @@ defmodule BettingSystemWeb.Router do
     live "/users/:id/edit", UserLive.Index, :edit
     live "/us/:id", UserLive.Show, :show
 
+    live "user/:id/view_user", UserLive.Index, :view_user
+
     live "/sports/:id", SportLive.Show, :show
     live "/sports/:id/show/edit", SportLive.Show, :edit
     # live "/games", GameLive.Index, :index

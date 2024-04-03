@@ -55,6 +55,16 @@ defmodule BettingSystemWeb.UserLive.Index do
     |> assign(:user_edit, Users.get_user!(id))
   end
 
+  defp apply_action(socket, :view_user, %{"id" => id}) do
+    IO.write("we are here")
+    IO.inspect(id)
+    id = String.to_integer(id)
+    IO.inspect(id)
+
+    socket
+    |> assign(:user_edit, Users.get_user!(id))
+  end
+
   # defp apply_action(socket, :new, _params) do
   #   socket
   #   |> assign(:page_title, "New user")

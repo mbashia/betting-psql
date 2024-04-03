@@ -12,6 +12,17 @@
     </.modal>
   <% end %>
 
+  <%= if @live_action in [ :view_user] do %>
+    <.modal return_to={Routes.user_index_path(@socket, :index)}>
+      <.live_component
+        module={BettingSystemWeb.UserLive.ViewUserComponent}
+        id={:new}
+        action={@live_action}
+        return_to={Routes.user_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
+
   <div class="flex flex-col   w-[98%] gap-2">
     <div class="flex flex-col gap-1">
       <div class="flex flex-row items-end p-2 justify-between w-[100%]">
@@ -86,7 +97,7 @@
               <td class="p-2">
                 <div class="flex flex-row gap-2 justify-center items-center">
                   <div>
-                    <%= live_redirect(to: Routes.user_show_path(@socket, :show, client)) do %>
+                    <%= live_redirect(to: Routes.user_index_path(@socket, :view_user, client)) do %>
                       <%= Heroicons.icon("eye",
                         type: "solid",
                         class: "h-6  group-hover:text-green-600 text-green-400 w-6"
