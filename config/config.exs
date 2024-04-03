@@ -28,16 +28,6 @@ config :tailwind,
     cd: Path.expand("../assets", __DIR__)
   ]
 
-# Configures the mailer
-#
-# By default it uses the "Local" adapter which stores the emails
-# locally. You can see the emails in your browser, at "/dev/mailbox".
-#
-# For production it's recommended to configure a different adapter
-# at the `config/runtime.exs`.
-# config :betting_system, BettingSystem.Mailer,
-#   adapter: Swoosh.Adapters.Sendgrid,
-#   api_key: System.get_env("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")
 
 config :swoosh, :api_client, Swoosh.ApiClient.Finch
 
