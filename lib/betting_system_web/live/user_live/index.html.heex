@@ -17,7 +17,9 @@
       <.live_component
         module={BettingSystemWeb.UserLive.ViewUserComponent}
         id={:new}
+        user_to_view={@user_to_view}
         action={@live_action}
+        bets={@bets}
         return_to={Routes.user_index_path(@socket, :index)}
       />
     </.modal>
@@ -213,6 +215,19 @@
                   " mont-500 w-[100%] bg-[#EBEBEB] focus:border-gray-800 focus:ring-gray-800 border-0 rounded-md p-3"
               ) %>
               <%= error_tag(f, :phone_number) %>
+            </div>
+          </div>
+
+          <div class="flex md:w-[48%] w-[100%] flex-col gap-2">
+            <p class="text-[#707070]  mont-500">
+              Date of Birth
+            </p>
+            <div class="text-[#707070]">
+              <%= date_input(f, :dob,
+                class:
+                  " mont-500 w-[100%] bg-[#EBEBEB] focus:border-gray-800 focus:ring-gray-800 border-0 rounded-md p-3"
+              ) %>
+              <%= error_tag(f, :dob) %>
             </div>
           </div>
         </div>

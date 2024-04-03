@@ -7,6 +7,7 @@ defmodule BettingSystem.Bet do
   alias BettingSystem.Repo
 
   alias BettingSystem.Bet.Bets
+  alias BettingSystem.Betslips.Betslip
 
   @doc """
   Returns the list of bets.
@@ -20,6 +21,25 @@ defmodule BettingSystem.Bet do
 
   def get_all_bets(id) do
     Repo.all(from b in Bets, where: b.user_id == ^id)
+  end
+
+  def get_bet_by_betid(betid) do
+    Repo.one(from b in Bets, where: b.bet_id == ^betid)
+  end
+
+  def get_all_betslips_in_bet(betid) do
+    bet = get_bet_by_betid(betid)
+    ids = bet.bet_items |> Enum.map(fn {_k, v} -> v end)
+    betslips = get_bet_items_from_bet(ids)
+    betslips
+  end
+
+  def get_bet_items_from_bet(bet_item_ids) do
+    IO.inspect(
+      from(o in Betslip, where: o.id in ^bet_item_ids)
+      |> Repo.all()
+      |> Repo.preload(:game)
+    )
   end
 
   def list_bets do

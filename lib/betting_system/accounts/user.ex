@@ -17,6 +17,8 @@ defmodule BettingSystem.Accounts.User do
     field :phone_number, :integer
     field :image, :string, default: "/images/default.jpeg"
     field :confirmed_at, :naive_datetime
+
+    field :dob, :date
     has_many :bets, Bets
     has_many :sports, Sport
     has_many :games, Game
@@ -51,7 +53,7 @@ defmodule BettingSystem.Accounts.User do
 
   def change_user_changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :firstname, :lastname, :phone_number, :role, :status])
+    |> cast(attrs, [:email, :firstname, :lastname, :phone_number, :role, :status, :dob])
     |> validate_required([:email, :firstname, :lastname, :phone_number, :role, :status])
   end
 

@@ -179,7 +179,7 @@ defmodule BettingSystemWeb.GameLive.Index do
     betslip_items = Betslips.get_betslips(socket.assigns.user.id)
 
     bet_slip_ids_map =
-      Enum.map(betslip_items, fn betslip -> {betslip.game_id, betslip.game_id} end) |> Map.new()
+      Enum.map(betslip_items, fn betslip -> {betslip.id, betslip.id} end) |> Map.new()
 
     unique_bet_id =
       SecureRandom.base64(socket.assigns.user.id)

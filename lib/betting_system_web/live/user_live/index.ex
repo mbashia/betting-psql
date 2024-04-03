@@ -60,9 +60,11 @@ defmodule BettingSystemWeb.UserLive.Index do
     IO.inspect(id)
     id = String.to_integer(id)
     IO.inspect(id)
+    user_bets = Bet.get_all_bets(id) |> Enum.reverse()
 
     socket
-    |> assign(:user_edit, Users.get_user!(id))
+    |> assign(:user_to_view, Users.get_user!(id))
+    |> assign(:bets, user_bets)
   end
 
   # defp apply_action(socket, :new, _params) do
