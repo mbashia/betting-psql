@@ -17,6 +17,22 @@ defmodule BettingSystem.Games do
       [%Game{}, ...]
 
   """
+
+  def subscribe() do
+    Phoenix.PubSub.subscribe(BettingSystem.PubSub, "game_updates")
+  end
+
+  #  the code below broadcasts a message to the the topic "mytopic"
+  def publish({:ok, game}, tag) do
+    new_game =
+      game
+      |> Repo.preload(:user)
+
+    Phoenix.PubSub.broadcast(BettingSystem.PubSub, "game_updates", {tag, new_game})
+
+    {:ok, game}
+  end
+
   def list_games do
     Repo.all(from g in Game, order_by: [desc: g.status, desc: g.id])
     |> Repo.preload(:sport)
@@ -76,6 +92,13 @@ defmodule BettingSystem.Games do
     game
     |> Game.changeset(attrs)
     |> Repo.update()
+  end
+
+  def update_games_check(%Game{} = game, attrs) do
+    game
+    |> Game.changeset(attrs)
+    |> Repo.update()
+    |> publish(:game_updated)
   end
 
   @doc """

@@ -5,6 +5,7 @@ defmodule BettingSystemWeb.UserLive.Show do
   alias BettingSystem.Accounts
   alias BettingSystem.Users
   alias BettingSystem.Bet
+  alias BettingSystem.Games
 
   @impl true
   def mount(_params, session, socket) do

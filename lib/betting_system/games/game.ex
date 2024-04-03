@@ -6,7 +6,7 @@ defmodule BettingSystem.Games.Game do
   alias BettingSystem.Betslips.Betslip
 
   schema "games" do
-    field :date, :naive_datetime
+    field :date, :date
     field :draw, :float
     field :location, :string
     field :lose, :float

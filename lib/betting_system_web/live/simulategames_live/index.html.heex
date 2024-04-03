@@ -68,7 +68,7 @@
 
             <td class="p-2"><%= game.team1 %> vs <%= game.team2 %></td>
             <td class="p-2">
-              <%= NaiveDateTime.to_iso8601(game.date) |> String.replace("T", " ") %>
+              <%= game.date %>
             </td>
             <td class="p-2">
               <%= if game.status == "completed" do %>
@@ -104,4 +104,17 @@
       </tbody>
     </table>
   </div>
+  <script>
+    function toggleSidebar() {
+      console.log("im here, arent I?");
+      var sidebar = document.querySelector('#menu');
+      sidebar.classList.toggle('hidden');
+
+    }
+
+    function closeside() {
+      var sidebar = document.querySelector('#menu');
+      sidebar.classList.add('hidden');
+    }
+  </script>
 </div>

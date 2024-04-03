@@ -21,14 +21,8 @@
         </div>
         <div class="w-[50%]   flex gap-2   flex-col  p-2  ">
           <%= label(f, :date, class: "text-sm text-[#92a0ca] poppins-bold w-[20%]") %>
-          <input
-            type="datetime-local"
-            id="datetimeInput"
-            name="datetime"
-            class="text-black w-[95%] rounded-lg"
-          />
 
-          <%= text_input(f, :date, class: "w-[70%] text-black", type: "hidden", id: "hiddenInput") %>
+          <%= date_input(f, :date, class: "text-black w-[95%] rounded-lg", id: "hiddenInput") %>
 
           <%= error_tag(f, :date) %>
         </div>

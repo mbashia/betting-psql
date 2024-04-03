@@ -4,7 +4,7 @@ defmodule BettingSystem.Repo.Migrations.CreateGames do
   def change do
     create table(:games) do
       add :sport_id, :integer
-      add :date, :naive_datetime
+      add :date, :date
       add :status, :string
       add :result, :string
       add :location, :string

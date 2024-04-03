@@ -24,8 +24,7 @@
       ) %>
     </div>
     <div>
-      <span class="poppins-regular te
-xt-base text-white align-top uppercase">betslip</span>
+      <span class="poppins-regular text-base text-white align-top uppercase">betslip</span>
       <div class="absolute flex justify-center items-center top-[3px] left-[8px] h-[15px] w-[15px] pl-[2px] pb-[2px] rounded-full bg-yellow-500 text-sm ">
         <%= @length_bet %>
       </div>
@@ -215,7 +214,13 @@ xt-base text-white align-top uppercase">betslip</span>
           <p>payout</p>
           <p id="payoutDisplay"><%= @payout %></p>
         </div>
-        <.form let={f} for={@changeset} id="bets-form" phx-submit="place_bet">
+        <.form
+          let={f}
+          for={@changeset}
+          phx-change="validate_amount"
+          id="bets-form"
+          phx-submit="place_bet"
+        >
           <%= label(f, :amount) %>
           <%= number_input(f, :amount,
             step: "any",

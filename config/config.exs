@@ -35,11 +35,13 @@ config :tailwind,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :betting_system, BettingSystem.Mailer,
-  adapter: Swoosh.Adapters.Sendgrid,
-  api_key: System.get_env("SENDGRID_API_KEY")
+# config :betting_system, BettingSystem.Mailer,
+#   adapter: Swoosh.Adapters.Sendgrid,
+#   api_key: System.get_env("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")
 
 config :swoosh, :api_client, Swoosh.ApiClient.Finch
+
+config :betting_system, BettingSystem.Mailer, adapter: Swoosh.Adapters.Local
 
 # config :betting_system, BettingSystem.Mailer, adapter: Swoosh.Adapters.Local
 

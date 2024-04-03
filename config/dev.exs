@@ -2,7 +2,7 @@ import Config
 
 # Configure your database
 config :betting_system, BettingSystem.Repo,
-  username: "mbashia",
+  username: "root",
   password: "Khohisan@7",
   database: "betting_system_dev",
   hostname: "localhost",

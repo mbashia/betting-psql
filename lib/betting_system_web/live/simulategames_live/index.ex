@@ -38,7 +38,7 @@ defmodule BettingSystemWeb.SimulategamesLive.Index do
       random_result = Enum.random(["team1 win", "game_draw", "team2 win"])
 
       random_updates = %{"status" => "completed", "result" => random_result}
-      Games.update_game(game, random_updates)
+      Games.update_games_check(game, random_updates)
     end)
 
     games = Games.list_games()

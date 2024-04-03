@@ -242,9 +242,13 @@ defmodule BettingSystemWeb.GameLive.Index do
   end
 
   def handle_event("validate_amount", %{"bets" => %{"amount" => amount, "odds" => odds}}, socket) do
-    amount = String.to_integer(amount)
-    odds = String.to_float(odds)
-    payout = odds * amount
+    IO.inspect(odds)
+
+    new_amount = String.to_integer(amount)
+    new_odds = String.to_float(odds)
+    payout = new_odds * new_amount
+
+    IO.inspect(payout)
 
     {:noreply,
      socket
