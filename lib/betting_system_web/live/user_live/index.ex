@@ -18,6 +18,8 @@ defmodule BettingSystemWeb.UserLive.Index do
 
     user = Accounts.get_user_by_session_token(session["user_token"]) |> Repo.preload(:betslips)
     users = Users.list_users()
+    user_changeset = Accounts.change_user_profile(user)
+    IO.inspect(user)
     user_bets = Bet.get_all_bets(user.id) |> Enum.reverse()
 
     number =
@@ -33,7 +35,8 @@ defmodule BettingSystemWeb.UserLive.Index do
      |> assign(:user, user)
      |> assign(:check_bet_history, 0)
      |> assign(:bets, user_bets)
-     |> assign(:number, number)}
+     |> assign(:number, number)
+     |> assign(:user_changeset, user_changeset)}
   end
 
   @impl true
@@ -109,6 +112,34 @@ defmodule BettingSystemWeb.UserLive.Index do
     # {:ok, _} = Users.delete_user(users)
 
     # {:noreply, assign(socket, :users, Users.list_users())}
+  end
+
+  def handle_event("validate", %{"user" => user_params}, socket) do
+    changeset =
+      socket.assigns.user
+      |> Users.change_user(user_params)
+      |> Map.put(:action, :validate)
+
+    {:noreply, assign(socket, :changeset, changeset)}
+  end
+
+  def handle_event(
+        "update_profile",
+        %{
+          "user" => user_params
+        },
+        socket
+      ) do
+    case Users.update_user(socket.assigns.user, user_params) do
+      {:ok, _user} ->
+        {:noreply,
+         socket
+         |> put_flash(:info, "user updated successfully")}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        IO.write("error")
+        {:noreply, assign(socket, :changeset, changeset)}
+    end
   end
 
   def handle_event("bet history", params, socket) do

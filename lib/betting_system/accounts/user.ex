@@ -15,6 +15,7 @@ defmodule BettingSystem.Accounts.User do
     field :status, :string, default: "active"
     field :role, :string, default: "user"
     field :phone_number, :integer
+    field :image, :string, default: "/images/default.jpeg"
     field :confirmed_at, :naive_datetime
     has_many :bets, Bets
     has_many :sports, Sport

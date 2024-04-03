@@ -28,7 +28,6 @@ config :tailwind,
     cd: Path.expand("../assets", __DIR__)
   ]
 
-
 config :swoosh, :api_client, Swoosh.ApiClient.Finch
 
 config :betting_system, BettingSystem.Mailer, adapter: Swoosh.Adapters.Local

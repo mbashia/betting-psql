@@ -2,12 +2,128 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,100&family=Libre+Baskerville:wght@700&family=M+PLUS+Rounded+1c&family=Montserrat:ital@1&family=Open+Sans:ital@1&family=Poppins:wght@300;500;700&family=Questrial&family=Roboto&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* html {
+  font-family: "Montserrat", sans-serif;
+font-optical-sizing: auto;
+font-weight: 400;
+font-style: normal;
+} */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  src: local("Montserrat Medium"), local("Montserrat-Medium"),
+    url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_cJD3gTD_u50.woff2)
+      format("woff2");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Montserrat Bold"), local("Montserrat-Bold"),
+    url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_cJD3g3D_u50.woff2)
+      format("woff2");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 800;
+  src: local("Montserrat ExtraBold"), local("Montserrat-ExtraBold"),
+    url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_cJD3gbD_u50.woff2)
+      format("woff2");
+}
+
+/* Define classes using the specific font weights */
+.mont-500 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+.mont-700 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+.mont-800 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+}
+.mont-600 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+.mont-400 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 500;
+  src: local("Jost Medium"), local("Jost-Medium"),
+    url(https://fonts.gstatic.com/s/jost/v2/5tN2GA5ibtx5eRVhBcmwiKkwRg.woff2)
+      format("woff2");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Jost Bold"), local("Jost-Bold"),
+    url(https://fonts.gstatic.com/s/jost/v2/5tN2GA5ibtx5eRVhBcmwiKkwRg.woff2)
+      format("woff2");
+}
+
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 800;
+  src: local("Jost ExtraBold"), local("Jost-ExtraBold"),
+    url(https://fonts.gstatic.com/s/jost/v2/5tN2GA5ibtx5eRVhBcmwiKkwRg.woff2)
+      format("woff2");
+}
+
+/* Define classes using the specific font weights */
+.jost-500 {
+  font-family: "Jost", sans-serif;
+  font-weight: 500;
+}
+
+.jost-700 {
+  font-family: "Jost", sans-serif;
+  font-weight: 700;
+}
+
+.jost-800 {
+  font-family: "Jost", sans-serif;
+  font-weight: 800;
+}
+.jost-600 {
+  font-family: "Jost", sans-serif;
+  font-weight: 600;
+}
+.jost-400 {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,100&family=Libre+Baskerville:wght@700&family=M+PLUS+Rounded+1c&family=Montserrat:ital@1&family=Open+Sans:ital@1&family=Poppins:wght@300;500;700&family=Questrial&family=Roboto&display=swap");
 
 .poppins-light {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
+}
+
+.zind {
+  z-index: 1000;
 }
 
 .poppins-regular {
@@ -19,6 +135,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 700;
 }
+
 /* This file is for your main application CSS */
 
 /* Alerts and form errors used by phx.new */
