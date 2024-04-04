@@ -128,7 +128,7 @@ defmodule BettingSystemWeb.UserLive.ViewUserComponent do
                     <.form
                       let={f}
                       for={%{}}
-                      id="search-form"
+                      id="role-form"
                       class="w-[100%]"
                       phx-target={@myself}
                       data-confirm="Are you sure you want to update role?"
