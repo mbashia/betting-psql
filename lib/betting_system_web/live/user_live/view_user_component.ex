@@ -16,6 +16,28 @@ defmodule BettingSystemWeb.UserLive.ViewUserComponent do
               alt=""
               class="w-[150px] h-[150px] my-2 object-cover rounded-full"
             />
+
+            <%= if @user_to_view.status == "active" do %>
+              <button
+                phx-click="soft_delete"
+                phx-value-id={@user_to_view.id}
+                phx-target={@myself}
+                data-confirm="Are you sure you?"
+                class="w-[200px] h-[48px]   mt-[20px] py-[10px] bg-red-500 mont-700 text-white rounded-3xl"
+              >
+                Deactivate
+              </button>
+            <% else %>
+              <button
+                phx-click="soft_delete"
+                phx-value-id={@user_to_view.id}
+                phx-target={@myself}
+                data-confirm="Are you sure you?"
+                class="w-[200px] h-[48px]  mt-[20px]  py-[10px] bg-green-500 mont-700 text-white rounded-3xl"
+              >
+                Activate
+              </button>
+            <% end %>
           </div>
           <div class="md:w-[70%] w-[100%] flex flex-col gap-4 shadow-md bg-[#202941] p-4 rounded-md shadow-[#000000]/40 ">
             <div class="flex flex-col gap-2">
@@ -190,6 +212,45 @@ defmodule BettingSystemWeb.UserLive.ViewUserComponent do
       </div>
     </div>
     """
+  end
+
+  @impl true
+  def handle_event("soft_delete", %{"id" => id}, socket) do
+    user = Users.get_user!(id)
+
+    cond do
+      user.status == "active" ->
+        case Users.update_user(user, %{status: "inactive"}) do
+          {:ok, user} ->
+            {:noreply,
+             socket
+             |> put_flash(:info, "User deactivated successfully")
+             |> assign(:user_to_view, user)}
+
+          {:error, _changeset} ->
+            {:noreply,
+             socket
+             |> put_flash(:error, "Failed to deactivate user")}
+        end
+
+      user.status == "inactive" ->
+        case Users.update_user(user, %{status: "active"}) do
+          {:ok, user} ->
+            {:noreply,
+             socket
+             |> put_flash(:info, "User activated successfully")
+             |> assign(:user_to_view, user)}
+
+          {:error, _changeset} ->
+            {:noreply,
+             socket
+             |> put_flash(:error, "Failed to activate user:")}
+        end
+
+      true ->
+        socket
+        |> put_flash(:error, "Invalid user status")
+    end
   end
 
   def handle_event("change_role", %{"role" => role}, socket) do

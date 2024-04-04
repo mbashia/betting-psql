@@ -101,52 +101,9 @@ defmodule BettingSystemWeb.UserLive.Index do
     {:noreply, socket |> assign(:bets, bets)}
   end
 
-  @impl true
-  def handle_event("delete", %{"id" => id}, socket) do
-    user = Users.get_user!(id)
+  # {:ok, _} = Users.delete_user(users)
 
-    cond do
-      user.status == "active" ->
-        case Users.update_user(user, %{status: "inactive"}) do
-          {:ok, _user} ->
-            users = Users.list_users()
-
-            {:noreply,
-             socket
-             |> put_flash(:info, "User deactivated successfully")
-             |> assign(:clients, users)}
-
-          {:error, _changeset} ->
-            {:noreply,
-             socket
-             |> put_flash(:error, "Failed to deactivate user")}
-        end
-
-      user.status == "inactive" ->
-        case Users.update_user(user, %{status: "active"}) do
-          {:ok, _user} ->
-            users = Users.list_users()
-
-            {:noreply,
-             socket
-             |> put_flash(:info, "User activated successfully")
-             |> assign(:clients, users)}
-
-          {:error, _changeset} ->
-            {:noreply,
-             socket
-             |> put_flash(:error, "Failed to activate user:")}
-        end
-
-      true ->
-        socket
-        |> put_flash(:error, "Invalid user status")
-    end
-
-    # {:ok, _} = Users.delete_user(users)
-
-    # {:noreply, assign(socket, :users, Users.list_users())}
-  end
+  # {:noreply, assign(socket, :users, Users.list_users())}
 
   def handle_event("validate", %{"user" => user_params}, socket) do
     changeset =
