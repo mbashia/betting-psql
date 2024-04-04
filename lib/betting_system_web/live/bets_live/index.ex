@@ -32,8 +32,8 @@ defmodule BettingSystemWeb.BetsLive.Index do
     bet = Bet.get_bet_by_betid(betid)
 
     case bet.end_result do
-      "won" -> "loss" <> bet.payout
-      "lost" -> "profit" <> bet.payout
+      "win" -> "loss" <> "#{bet.payout}"
+      "lost" -> "profit" <> "#{bet.payout}"
       "nothing" -> "Not Over Yet"
     end
   end
