@@ -119,32 +119,33 @@ defmodule BettingSystemWeb.UserLive.ViewUserComponent do
                   </div>
                 </div>
               </div>
-
-              <div class="flex md:w-[48%] w-[100%] flex-col gap-2">
-                <p class="text-[#707070]  mont-500">
-                  Change role
-                </p>
-                <div class="text-[#707070]">
-                  <.form
-                    let={f}
-                    for={%{}}
-                    id="search-form"
-                    class="w-[100%]"
-                    phx-target={@myself}
-                    data-confirm="Are you sure you want to update role?"
-                    phx-change="change_role"
-                  >
-                    <%= select(
-                      f,
-                      :role,
-                      [{"Admin", "Admin"}, {"SuperAdmin", "SuperAdmin"}, {"User", "user"}],
-                      class:
-                        "hover:cursor-pointer border-none rounded-md flex items-center justify-center mont-600  py-2   text-[#2B6777] w-[100%]  mont-600 text-center",
-                      prompt: "Set Role"
-                    ) %>
-                  </.form>
+              <%= if @user.role == "SuperAdmin" do %>
+                <div class="flex md:w-[48%] w-[100%] flex-col gap-2">
+                  <p class="text-[#707070]  mont-500">
+                    Change role
+                  </p>
+                  <div class="text-[#707070]">
+                    <.form
+                      let={f}
+                      for={%{}}
+                      id="search-form"
+                      class="w-[100%]"
+                      phx-target={@myself}
+                      data-confirm="Are you sure you want to update role?"
+                      phx-change="change_role"
+                    >
+                      <%= select(
+                        f,
+                        :role,
+                        [{"Admin", "Admin"}, {"SuperAdmin", "SuperAdmin"}, {"User", "user"}],
+                        class:
+                          "hover:cursor-pointer border-none rounded-md flex items-center justify-center mont-600  py-2   text-[#2B6777] w-[100%]  mont-600 text-center",
+                        prompt: "Set Role"
+                      ) %>
+                    </.form>
+                  </div>
                 </div>
-              </div>
+              <% end %>
             </div>
           </div>
         </div>

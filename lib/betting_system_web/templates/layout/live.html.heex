@@ -110,7 +110,7 @@
     z-index:4;"
   >
     <div class="flex flex-col  ">
-      <%= if @user.email == "mbashiavictor@gmail.com" || @user.role == "superadmin" do %>
+      <%= if @user.role == "Admin" ||  @user.role == "SuperAdmin" do %>
         <div
           id="menu"
           style="z-index:4; "
@@ -252,7 +252,7 @@
       <% end %>
     </div>
   </div>
-  <%= if  @user.email == "mbashiavictor@gmail.com" || @user.role == "superadmin" do %>
+  <%= if @user.role == "Admin" ||  @user.role == "SuperAdmin" do %>
     <div class="md:pl-[200px]">
       <%= @inner_content %>
     </div>

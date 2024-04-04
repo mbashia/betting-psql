@@ -74,7 +74,7 @@ defmodule BettingSystemWeb.Router do
   end
 
   scope "/", BettingSystemWeb do
-    pipe_through [:browser, :require_authenticated_superadmin]
+    pipe_through [:browser, :require_authenticated_admins]
 
     live "/sports", SportLive.Index, :index
     live "/simulate", SimulategamesLive.Index, :index
@@ -87,7 +87,7 @@ defmodule BettingSystemWeb.Router do
     live "/users/:id/edit", UserLive.Index, :edit
     live "/us/:id", UserLive.Show, :show
 
-    live "user/:id/view_user", UserLive.Index, :view_user
+    live "/users/:id/view_user", UserLive.Index, :view_user
 
     live "/sports/:id", SportLive.Show, :show
     live "/sports/:id/show/edit", SportLive.Show, :edit
