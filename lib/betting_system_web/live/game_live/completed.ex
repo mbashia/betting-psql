@@ -40,7 +40,7 @@ defmodule BettingSystemWeb.GameLive.Completed do
           <div class="flex flex-col justify-evenly">
             <%= for game <- @games do %>
               <div class="flex justify-evenly border-b-[1px] border-gray-700 hover:bg-blue-100/50 transition-all ease-in-out duration-500  ">
-                <div class="text-sm md:text-base  mb-4 "><%= game.sport_id %></div>
+                <div class="text-sm md:text-base  mb-4 "><%= game.sport.name %></div>
 
                 <div class="text-sm md:text-base  mb-4 "><%= game.team1 %> Vs <%= game.team2 %></div>
 

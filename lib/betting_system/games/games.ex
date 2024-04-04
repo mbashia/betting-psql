@@ -43,7 +43,7 @@ defmodule BettingSystem.Games do
   end
 
   def list_completed_games() do
-    Repo.all(from g in Game, where: g.status == "completed")
+    Repo.all(from g in Game, where: g.status == "completed") |> Repo.preload(:sport)
   end
 
   @doc """
