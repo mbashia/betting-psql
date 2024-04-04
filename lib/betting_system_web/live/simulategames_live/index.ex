@@ -46,7 +46,7 @@ defmodule BettingSystemWeb.SimulategamesLive.Index do
     users_with_pending_games = Accounts.get_users_with_ids(users_with_pending_bets_ids)
 
     Enum.map(users_with_pending_games, fn user ->
-      user_betslips = Betslips.get_betslip_user_id(user.id)
+      user_betslips = Betslips.get_unchecked_betslips_for_user(user.id)
 
       Enum.each(user_betslips, fn betslip ->
         game_id = betslip.game_id
