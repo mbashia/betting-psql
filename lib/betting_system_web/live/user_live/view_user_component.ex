@@ -65,11 +65,11 @@ defmodule BettingSystemWeb.UserLive.ViewUserComponent do
             <div class="flex w-[100%]  md:flex-row flex-col  justify-between  gap-2">
               <div class="flex md:w-[48%] w-[100%] flex-col gap-2">
                 <p class="text-[#707070]  mont-500">
-                  Email
+                  Dob
                 </p>
                 <div class=" text-[#707070]">
                   <div class="mont-500 w-[100%] bg-[#EBEBEB] focus:border-gray-800 focus:ring-gray-800 border-0 rounded-md p-3">
-                    <%= @user_to_view.email %>
+                    <%= @user_to_view.dob %>
                   </div>
                 </div>
               </div>
@@ -82,6 +82,45 @@ defmodule BettingSystemWeb.UserLive.ViewUserComponent do
                   <div class="mont-500 w-[100%] bg-[#EBEBEB] focus:border-gray-800 focus:ring-gray-800 border-0 rounded-md p-3">
                     <%= @user_to_view.phone_number %>
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex w-[100%]  md:flex-row flex-col  justify-between  gap-2">
+              <div class="flex md:w-[48%] w-[100%] flex-col gap-2">
+                <p class="text-[#707070]  mont-500">
+                  Current Role
+                </p>
+                <div class=" text-[#707070]">
+                  <div class="mont-500 w-[100%] bg-[#EBEBEB] focus:border-gray-800 focus:ring-gray-800 border-0 rounded-md p-3">
+                    <%= @user_to_view.role %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex md:w-[48%] w-[100%] flex-col gap-2">
+                <p class="text-[#707070]  mont-500">
+                  Change role
+                </p>
+                <div class="text-[#707070]">
+                  <.form
+                    let={f}
+                    for={%{}}
+                    id="search-form"
+                    class="w-[100%]"
+                    phx-target={@myself}
+                    data-confirm="Are you sure you want to update role?"
+                    phx-change="change_role"
+                  >
+                    <%= select(
+                      f,
+                      :role,
+                      [{"Admin", "Admin"}, {"SuperAdmin", "SuperAdmin"}, {"User", "user"}],
+                      class:
+                        "hover:cursor-pointer border-none rounded-md flex items-center justify-center mont-600  py-2   text-[#2B6777] w-[100%]  mont-600 text-center",
+                      prompt: "Set Role"
+                    ) %>
+                  </.form>
                 </div>
               </div>
             </div>
@@ -151,6 +190,23 @@ defmodule BettingSystemWeb.UserLive.ViewUserComponent do
       </div>
     </div>
     """
+  end
+
+  def handle_event("change_role", %{"role" => role}, socket) do
+    change_params = %{"role" => role}
+
+    case Users.update_user(socket.assigns.user_to_view, change_params) do
+      {:ok, user} ->
+        {:noreply,
+         socket
+         |> assign(:user_to_view, user)
+         |> put_flash(:info, "User role updated to #{role}")}
+
+      {:error, _reason} ->
+        {:noreply,
+         socket
+         |> put_flash(:error, "User role not updated ")}
+    end
   end
 
   def get_games(betid) do

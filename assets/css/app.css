@@ -145,13 +145,12 @@ font-style: normal;
   top: 0;
 
   left: 50%;
-
   transform: translateX(-50%);
+  width: 80%;
+  z-index: 1000;
 
   border: 1px solid transparent;
   border-radius: 4px;
-  z-index: 1000;
-
 }
 
 .alert-info {

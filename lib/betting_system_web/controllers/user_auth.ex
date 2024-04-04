@@ -150,7 +150,7 @@ defmodule BettingSystemWeb.UserAuth do
     end
   end
 
-  def require_authenticated_admin(conn, _opts) do
+  def require_authenticated_superadmin(conn, _opts) do
     if conn.assigns[:current_user] && conn.assigns.current_user.email == "mbashiavictor@gmail.com" do
       conn
     else

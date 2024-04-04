@@ -21,6 +21,30 @@ defmodule BettingSystem.Betslips do
     Repo.all(Betslip)
   end
 
+  def get_games_in_bet(game_id) do
+    Repo.one(
+      from b in Betslip,
+        where: b.game_id == ^game_id and b.status == "out_of_slip",
+        select: count(b.id)
+    )
+  end
+
+  def get_games_in_bet_won(game_id) do
+    Repo.one(
+      from b in Betslip,
+        where: b.game_id == ^game_id and b.status == "out_of_slip" and b.end_result == "won",
+        select: count(b.id)
+    )
+  end
+
+  def get_games_in_bet_lost(game_id) do
+    Repo.one(
+      from b in Betslip,
+        where: b.game_id == ^game_id and b.status == "out_of_slip" and b.end_result == "lost",
+        select: count(b.id)
+    )
+  end
+
   def get_betslips(id) do
     Repo.all(from b in Betslip, where: b.user_id == ^id and b.status == "in_betslip")
     |> Repo.preload(:game)

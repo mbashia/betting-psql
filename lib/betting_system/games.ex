@@ -42,6 +42,10 @@ defmodule BettingSystem.Games do
     Repo.all(from g in Game, where: g.status == "pending")
   end
 
+  def list_completed_games() do
+    Repo.all(from g in Game, where: g.status == "completed")
+  end
+
   @doc """
   Gets a single game.
 

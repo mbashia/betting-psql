@@ -1,4 +1,15 @@
 <nav class="flex justify-between bg-[#202A39]  text-white p-[30px]">
+  <%= if @flash["info"] do %>
+    <p class="alert alert-info" role="alert" phx-click="lv:clear-flash" phx-value-key="info">
+      <%= live_flash(@flash, :info) %>
+    </p>
+  <% end %>
+
+  <%= if @flash["error"] do %>
+    <p class="alert alert-danger" role="alert" phx-click="lv:clear-flash" phx-value-key="error">
+      <%= live_flash(@flash, :error) %>
+    </p>
+  <% end %>
   <div class="">
     <p class="text-xl font-semibold poppins-bold">Spor00000000tOdds</p>
   </div>
