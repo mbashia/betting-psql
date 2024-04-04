@@ -30,6 +30,10 @@ defmodule BettingSystem.Accounts do
     User.change_user_changeset(user, attrs)
   end
 
+  def get_users_with_ids(user_ids) do
+    Repo.all(from u in User, where: u.id in ^user_ids)
+  end
+
   @doc """
   Gets a user by email and password.
 

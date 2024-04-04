@@ -10,8 +10,8 @@ defmodule BettingSystem.Games.Game do
     field :draw, :float
     field :location, :string
     field :lose, :float
-    field :result, :string
-    field :status, :string
+    field :result, :string, default: "pending"
+    field :status, :string, default: "pending"
     field :team1, :string
     field :team2, :string
     # field :type, :string

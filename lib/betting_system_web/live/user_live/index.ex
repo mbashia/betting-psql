@@ -14,9 +14,6 @@ defmodule BettingSystemWeb.UserLive.Index do
   @impl true
   def mount(_params, session, socket) do
     # :timer.send_interval(20000, self(), :update_games)
-    if connected?(socket) do
-      Games.subscribe()
-    end
 
     user = Accounts.get_user_by_session_token(session["user_token"]) |> Repo.preload(:betslips)
     users = Users.list_users()
@@ -143,64 +140,6 @@ defmodule BettingSystemWeb.UserLive.Index do
     {:noreply,
      socket
      |> assign(:check_bet_history, 0)}
-  end
-
-  @impl true
-  def handle_info({:game_updated, _message}, socket) do
-    user_betslips = Betslips.get_betslip_user_id(socket.assigns.user.id)
-
-    Enum.each(user_betslips, fn betslip ->
-      game_id = betslip.game_id
-      game = Games.get_game!(game_id)
-
-      case game.status do
-        "completed" ->
-          if game.result == betslip.result_type do
-            Betslips.update_betslip(betslip, %{"end_result" => "won"})
-          else
-            Betslips.update_betslip(betslip, %{"end_result" => "lost"})
-          end
-
-        "pending" ->
-          _pending = "pending"
-      end
-    end)
-
-    # this code from here  i cant rembember i was in the zone and it might not be working check later
-    user_bets = Bet.get_all_bets(socket.assigns.user.id)
-
-    Enum.each(user_bets, fn bet ->
-      game_ids = Map.values(bet.bet_items)
-
-      bet_status =
-        Enum.reduce(game_ids, :win, fn x, acc ->
-          IO.write("Checking betslip for game ID #{x}")
-          betslip = Betslips.getting_betslip(socket.assigns.user.id, x)
-          IO.inspect(betslip)
-          IO.write("above inspected betslip")
-
-          case betslip.end_result do
-            "won" -> acc
-            "lost" -> :lost
-            _ -> false
-          end
-        end)
-
-      case bet_status do
-        :win ->
-          Bet.update_bets(bet, %{"end_result" => "win", "status" => "closed"})
-          UserNotifier.bet_win_results_email(bet, socket.assigns.user)
-
-        :lost ->
-          Bet.update_bets(bet, %{"end_result" => "lost", "status" => "closed"})
-          UserNotifier.bet_loss_results_email(bet, socket.assigns.user)
-
-        false ->
-          _false = "false"
-      end
-    end)
-
-    {:noreply, socket}
   end
 
   # def handle_info(:update_games, socket) do

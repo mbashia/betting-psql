@@ -23,6 +23,10 @@ defmodule BettingSystem.Bet do
     Repo.all(from b in Bets, where: b.user_id == ^id)
   end
 
+  def get_users_with_pending_bets() do
+    Repo.all(from b in Bets, where: b.status == "open", distinct: true, select: b.user_id)
+  end
+
   def get_all_bets_by_filter(id, filter) do
     Repo.all(from b in Bets, where: b.user_id == ^id and b.end_result == ^filter)
   end

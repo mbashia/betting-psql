@@ -10,7 +10,7 @@ defmodule BettingSystem.Repo.Migrations.CreateUsersAuthTables do
       add :lastname, :string
       add :status, :string, default: "active"
       add :role, :string, default: "user"
-      add :phone_number, :integer
+      add :phone_number, :string
       timestamps()
     end
 

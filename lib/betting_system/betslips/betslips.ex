@@ -57,6 +57,10 @@ defmodule BettingSystem.Betslips do
     )
   end
 
+  def get_betslip_by_id(id) do
+    Repo.one(from b in Betslip, where: b.id == ^id )
+  end
+
   def getting_betslip(id, game_id) do
     Repo.one(from b in Betslip, where: b.user_id == ^id and b.game_id == ^game_id)
   end

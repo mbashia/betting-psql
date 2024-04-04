@@ -40,24 +40,6 @@
           <%= error_tag(f, :team2) %>
         </div>
       </div>
-      <div class="flex justify-between	w-[full] ">
-        <div class="w-[50%]  flex gap-2   flex-col  p-2  ">
-          <%= label(f, :status, class: "text-sm text-[#92a0ca] poppins-bold w-[20%] ") %>
-          <%= select(f, :status, ["pending", "completed", "in progress"],
-            prompt: "set status",
-            class: "w-[95%] text-black rounded-lg "
-          ) %>
-          <%= error_tag(f, :status) %>
-        </div>
-        <div class="w-[50%]  flex gap-2   flex-col  p-2  ">
-          <%= label(f, :result, class: "text-sm text-[#92a0ca] poppins-bold w-[20%] ") %>
-          <%= select(f, :result, ["pending", "team1 win", "game_draw", "team2 win"],
-            prompt: "set result",
-            class: "w-[95%] text-black rounded-lg "
-          ) %>
-          <%= error_tag(f, :result) %>
-        </div>
-      </div>
 
       <div class="flex justify-between	w-[full] ">
         <div class="w-[50%]  flex gap-2   flex-col  p-2  ">
