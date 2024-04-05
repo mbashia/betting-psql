@@ -17,7 +17,6 @@ defmodule BettingSystem.Repo.Migrations.CreateUsersAuthTables do
     create unique_index(:users, [:email])
     create unique_index(:users, [:phone_number])
 
-
     create table(:users_tokens) do
       add :user_id, references(:users, on_delete: :delete_all), null: false
       add :token, :binary, null: false, size: 32

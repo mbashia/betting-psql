@@ -94,9 +94,9 @@ defmodule BettingSystem.Accounts.UserNotifier do
 
     ==============================
 
-   Hello #{user.email},
+    Hello #{user.email},
     We're sorry to inform you,  that your bet #{bet.bet_id} didn't turn out as expected. It happens to the best of us! Don't let this setback discourage you; every bet is a chance to learn and grow. Stay positive and keep playing; the next win might be just around the corner. Thank you for participating, and best of luck with your future bets! 🍀
-   
+
     ==============================
     """)
   end

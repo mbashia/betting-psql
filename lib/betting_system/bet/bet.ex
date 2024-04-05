@@ -1,11 +1,9 @@
 defmodule BettingSystem.Bet do
- 
   import Ecto.Query, warn: false
   alias BettingSystem.Repo
 
   alias BettingSystem.Bet.Bets
   alias BettingSystem.Betslips.Betslip
-
 
   def get_all_bets(id) do
     Repo.all(from b in Bets, where: b.user_id == ^id)
@@ -42,9 +40,7 @@ defmodule BettingSystem.Bet do
     Repo.all(Bets)
   end
 
-  
   def get_bets!(id), do: Repo.get!(Bets, id)
-
 
   def create_bets(attrs \\ %{}) do
     %Bets{}
@@ -52,19 +48,16 @@ defmodule BettingSystem.Bet do
     |> Repo.insert()
   end
 
-  
   def update_bets(%Bets{} = bets, attrs) do
     bets
     |> Bets.changeset(attrs)
     |> Repo.update()
   end
 
-  
   def delete_bets(%Bets{} = bets) do
     Repo.delete(bets)
   end
 
- 
   def change_bets(%Bets{} = bets, attrs \\ %{}) do
     Bets.changeset(bets, attrs)
   end

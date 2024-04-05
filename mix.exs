@@ -53,7 +53,6 @@ defmodule BettingSystem.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:secure_random, "~> 0.5"},
       {:timex, "~> 3.0"},
-
       {:ex_fontawesome, "~> 0.7.0"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
       {:finch, "~> 0.8"},

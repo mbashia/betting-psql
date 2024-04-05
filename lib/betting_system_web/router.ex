@@ -102,7 +102,6 @@ defmodule BettingSystemWeb.Router do
 
     live "/user/bets/:id", BetsLive.Index, :index
     live "/user/bets_history/", UserHistoryLive.Index, :index
-    
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update

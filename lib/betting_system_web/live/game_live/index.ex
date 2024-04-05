@@ -181,7 +181,6 @@ defmodule BettingSystemWeb.GameLive.Index do
     bet_slip_ids_map =
       Enum.map(betslip_items, fn betslip -> {betslip.id, betslip.id} end) |> Map.new()
 
-  
     unique_bet_id = get_timestamp <> get_uuid
 
     IO.write("we got here")
@@ -251,7 +250,6 @@ defmodule BettingSystemWeb.GameLive.Index do
     Games.list_games()
     |> Enum.filter(fn x -> x.status == "pending" end)
   end
-
 
   def get_timestamp() do
     Timex.local()

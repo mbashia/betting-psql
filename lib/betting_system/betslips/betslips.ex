@@ -1,11 +1,8 @@
 defmodule BettingSystem.Betslips do
- 
-
   import Ecto.Query, warn: false
   alias BettingSystem.Repo
 
   alias BettingSystem.Betslips.Betslip
-
 
   def update_all(ids, bet_id) do
     from(m in Betslip,
@@ -80,24 +77,20 @@ defmodule BettingSystem.Betslips do
     |> Repo.preload(:game)
   end
 
- 
   def get_betslip!(id), do: Repo.get!(Betslip, id)
 
- 
   def create_betslip(attrs \\ %{}) do
     %Betslip{}
     |> Betslip.changeset(attrs)
     |> Repo.insert()
   end
 
-  
   def update_betslip(%Betslip{} = betslip, attrs) do
     betslip
     |> Betslip.changeset(attrs)
     |> Repo.update()
   end
 
- 
   def delete_betslip(%Betslip{} = betslip) do
     Repo.delete(betslip)
   end
