@@ -117,6 +117,9 @@
   </div>
 <% else %>
   <div class="h-[70vh] m-8 bg-[#202941] rounded-lg pt-6 ">
+    <span class="mx-4 text-white poppins-regular">
+      <%= live_redirect("Back", to: Routes.game_index_path(@socket, :index)) %>
+    </span>
     <.form
       let={f}
       for={@user_changeset}

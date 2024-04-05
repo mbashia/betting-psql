@@ -53,12 +53,7 @@
         <span class="align-top">profile</span>
       </div>
     <% end %>
-    <%= link( to: Routes.user_settings_path(@socket, :edit)) do %>
-      <div class="flex gap-2">
-        <%= Heroicons.icon("key", type: "outline", class: "h-4 w-4") %>
-        <span class="align-top">change password</span>
-      </div>
-    <% end %>
+
     <%= link( to: Routes.user_session_path(@socket, :delete), method: :delete) do %>
       <div class="flex gap-2">
         <%= Heroicons.icon("arrow-left-on-rectangle", type: "outline", class: "h-6 w-6") %>
@@ -122,9 +117,7 @@
               X
             </span>
           </div>
-          <div class="m-[20px] p-[20px]  text-[#8A92AB]">
-            <span>dashboard</span>
-          </div>
+        
           <div class=" m-[20px] p-[20px]  text-[#8A92AB]">
             <span>
               <%= live_redirect(" sports", to: Routes.sport_index_path(@socket, :index)) %>

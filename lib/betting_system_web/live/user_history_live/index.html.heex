@@ -1,6 +1,7 @@
 <div class="w-[100%] order border-red-500 overflow-y-scroll flex justify-center items-center">
   <div class="w-[90%]">
-    <div class="w-full mt-2 flex justify-center poppins-regular text-white items-center">
+    <div class="w-full mt-2 flex justify-evenly poppins-regular text-white items-center">
+      <div><%= live_redirect("Back", to: Routes.game_index_path(@socket, :index)) %></div>
       <%= if @bets==[] do %>
         <span>No bets placed yet</span>
       <% else %>
