@@ -12,5 +12,7 @@ defmodule BettingSystem.Repo.Migrations.CreateBetslips do
 
       timestamps()
     end
+    create index(:betslips, [:game_id])
+
   end
 end

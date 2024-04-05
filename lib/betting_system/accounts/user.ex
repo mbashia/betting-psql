@@ -49,6 +49,7 @@ defmodule BettingSystem.Accounts.User do
     |> cast(attrs, [:email, :password, :firstname, :lastname, :phone_number, :role, :status])
     |> validate_email()
     |> validate_password(opts)
+    |> unique_constraint(:phone_number, message: "number already in use")
   end
 
   def change_user_changeset(user, attrs) do
