@@ -106,7 +106,7 @@ defmodule BettingSystemWeb.GameLive.Completed do
           case slip.bet.end_result do
             "won" -> slip.bet.payout
             "lost" -> slip.bet.amount
-            "nothing"->0.0
+            "nothing" -> 0.0
           end
       end)
       |> Enum.sum()
