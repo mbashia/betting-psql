@@ -8,6 +8,10 @@
     <%= link("Log in to your account",
       to: Routes.user_session_path(@conn, :new),
       class: " "
-    ) %>
+    ) %>| <%= link("register",
+        to: Routes.user_registration_path(@conn, :new),
+        class: "  text-[#00A8FA]"
+      ) %>
   </p>
+
 </div>

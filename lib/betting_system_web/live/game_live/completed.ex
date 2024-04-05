@@ -81,7 +81,7 @@ defmodule BettingSystemWeb.GameLive.Completed do
                     <span><%= bets_placed(game.id) %></span>
                     <span><%= bets_won(game.id) %></span>
                     <span><%= bets_lost(game.id) %></span>
-                    <span>Total Bet Profit</span>
+                    <span><%= get_profit(game.id) %></span>
                   </div>
                 </div>
               </div>
@@ -97,21 +97,26 @@ defmodule BettingSystemWeb.GameLive.Completed do
     Betslips.get_games_in_bet(game_id)
   end
 
+  def get_profit(game_id) do
+    betslips = Betslips.preloaded_betslips(game_id)
+
+    amount =
+      Enum.map(betslips, fn slip ->
+        profit =
+          case slip.bet.end_result do
+            "won" -> slip.bet.payout
+            "lost" -> slip.bet.amount
+            "nothing"->0.0
+          end
+      end)
+      |> Enum.sum()
+  end
+
   def bets_won(game_id) do
     Betslips.get_games_in_bet_won(game_id)
   end
 
   def bets_lost(game_id) do
     Betslips.get_games_in_bet_lost(game_id)
-  end
-
-  def get_profit(betid) do
-    bet = Bet.get_bet_by_betid(betid)
-
-    case bet.end_result do
-      "won" -> "loss" <> bet.payout
-      "lost" -> "profit" <> bet.payout
-      "nothing" -> "Not Over Yet"
-    end
   end
 end

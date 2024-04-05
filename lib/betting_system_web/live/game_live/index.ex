@@ -210,10 +210,9 @@ defmodule BettingSystemWeb.GameLive.Index do
     IO.inspect(bet_params)
 
     case Bet.create_bets(bet_params) do
-      {:ok, _bets} ->
-        for betslips <- betslip_items do
-          Betslips.update_betslip(betslips, %{"status" => "out_of_slip"})
-        end
+      {:ok, bet} ->
+        betslip_ids = Enum.map(betslip_items, fn x -> x.id end)
+        Betslips.update_all(betslip_ids, bet.id)
 
         selected_bets = Betslips.get_betslips(socket.assigns.user.id)
 
