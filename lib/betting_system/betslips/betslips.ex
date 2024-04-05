@@ -17,6 +17,14 @@ defmodule BettingSystem.Betslips do
       [%Betslip{}, ...]
 
   """
+
+  def update_all(ids, bet_id) do
+    from(m in Betslip,
+      where: m.id in ^ids
+    )
+    |> Repo.update_all(set: [status: "out_of_slip", bet_id: bet_id])
+  end
+
   def list_betslips do
     Repo.all(Betslip)
   end
@@ -27,6 +35,14 @@ defmodule BettingSystem.Betslips do
         where: b.game_id == ^game_id and b.status == "out_of_slip",
         select: count(b.id)
     )
+  end
+
+  def preloaded_betslips(game_id) do
+    Repo.all(
+      from b in Betslip,
+        where: b.game_id == ^game_id and b.status == "out_of_slip"
+    )
+    |> Repo.preload(:bet)
   end
 
   def get_games_in_bet_won(game_id) do

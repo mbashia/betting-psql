@@ -3,6 +3,7 @@ defmodule BettingSystem.Betslips.Betslip do
   import Ecto.Changeset
   alias BettingSystem.Games.Game
   alias BettingSystem.Accounts.User
+  alias BettingSystem.Bet.Bets
 
   schema "betslips" do
     field :odds, :float
@@ -11,6 +12,7 @@ defmodule BettingSystem.Betslips.Betslip do
     field :end_result, :string, default: "nothing"
     belongs_to :game, Game, foreign_key: :game_id
     belongs_to :user, User, foreign_key: :user_id
+    belongs_to :bet, Bets, foreign_key: :bet_id
 
     timestamps()
   end
@@ -18,7 +20,7 @@ defmodule BettingSystem.Betslips.Betslip do
   @doc false
   def changeset(betslip, attrs) do
     betslip
-    |> cast(attrs, [:status, :odds, :result_type, :game_id, :user_id, :end_result])
+    |> cast(attrs, [:status, :odds, :result_type, :game_id, :user_id, :end_result, :bet_id])
     |> validate_required([:status, :odds, :result_type, :game_id, :user_id, :end_result])
   end
 end
