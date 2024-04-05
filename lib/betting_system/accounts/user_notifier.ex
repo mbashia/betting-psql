@@ -78,27 +78,25 @@ defmodule BettingSystem.Accounts.UserNotifier do
   end
 
   def bet_win_results_email(bet, user) do
-    deliver(user.email, "you bets result", """
+    deliver(user.email, "your bets result", """
 
     ==============================
 
-    habari yako #{user.email},
+    Hello  #{user.email},
 
-    Tunataka kukuarifu kuwa lile bet lako #{bet.bet_id} umeshinda bet hilo
-    enda kwenye website kupata malipo yako
+    Congratulations [Username]! 🎉 You've won your bet #{bet.bet_id} Your prediction was spot on, and you're walking away with a victory! Here's to your sharp intuition and winning spirit. Your winnings have been credited to your account. Keep up the great predictions and happy betting! 💰
     ==============================
     """)
   end
 
   def bet_loss_results_email(bet, user) do
-    deliver(user.email, "you bets result", """
+    deliver(user.email, "your bets result", """
 
     ==============================
 
-    habari yako #{user.email},
-
-    Tunataka kukuarifu kuwa lile bet lako #{bet.bet_id} umefeli bet hilo
-    jaribu tena next time si rahisi lakini mvumilivu hula mbivu
+   Hello #{user.email},
+    We're sorry to inform you,  that your bet #{bet.bet_id} didn't turn out as expected. It happens to the best of us! Don't let this setback discourage you; every bet is a chance to learn and grow. Stay positive and keep playing; the next win might be just around the corner. Thank you for participating, and best of luck with your future bets! 🍀
+   
     ==============================
     """)
   end
