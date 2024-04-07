@@ -73,9 +73,12 @@ defmodule BettingSystemWeb.UserLive.Index do
   # end
 
   defp apply_action(socket, :index, _params) do
+    users = Users.list_users()
+
     socket
     |> assign(:page_title, "Listing users")
     |> assign(:sport, nil)
+    |>assign(:clients, users)
   end
 
   def get_games(betid) do

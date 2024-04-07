@@ -60,6 +60,15 @@ defmodule BettingSystem.Games do
       ** (Ecto.NoResultsError)
 
   """
+  def insert_games(game_params) do
+    Repo.transaction(fn ->
+      Enum.each(game_params, fn params ->
+        %Game{}
+        |> Game.changeset(params)
+        |> Repo.insert!()
+      end)
+    end)
+  end
   def get_game!(id), do: Repo.get!(Game, id)
 
   @doc """
