@@ -22,6 +22,15 @@ defmodule BettingSystem.Accounts do
       nil
 
   """
+  def insert_users(users_params) do
+    Repo.transaction(fn ->
+      Enum.each(users_params, fn params ->
+        %User{}
+        |> User.registration_changeset(params)
+        |> Repo.insert!()
+      end)
+    end)
+  end
   def get_user_by_email(email) when is_binary(email) do
     Repo.get_by(User, email: email)
   end

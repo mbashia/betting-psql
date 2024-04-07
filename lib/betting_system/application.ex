@@ -16,6 +16,7 @@ defmodule BettingSystem.Application do
       {Phoenix.PubSub, name: BettingSystem.PubSub},
       # Start the Endpoint (http/https)
       BettingSystemWeb.Endpoint,
+      {Oban, Application.get_env(:betting_system, Oban)},
       {Finch, name: Swoosh.Finch}
 
       # Start a worker by calling: BettingSystem.Worker.start_link(arg)
