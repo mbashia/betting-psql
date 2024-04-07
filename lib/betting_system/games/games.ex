@@ -69,6 +69,7 @@ defmodule BettingSystem.Games do
       end)
     end)
   end
+
   def get_game!(id), do: Repo.get!(Game, id)
 
   @doc """

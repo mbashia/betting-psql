@@ -9,6 +9,7 @@ defmodule BettingSystem.Workers.ProcessorWorker do
   alias BettingSystem.Games
   alias BettingSystem.Betslips
   alias BettingSystem.Accounts.UserNotifier
+
   def perform(job) do
     users_with_pending_bets_ids = Bet.get_users_with_pending_bets()
     users_with_pending_games = Accounts.get_users_with_ids(users_with_pending_bets_ids)

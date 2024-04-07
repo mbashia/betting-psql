@@ -15,21 +15,21 @@ alias BettingSystem.Repo
 alias BettingSystem.Games.Game
 alias BettingSystem.Games
 
-
-users = [%{
-  firstname: "admin",
-  lastname: "one",
-  email: "mbashiavictor@gmail.com",
-  location: "thika",
-  # In a real application, you'd hash the password
-  password: "123456",
-  status: "active",
-  role: "SuperAdmin",
-  phone_number: "254791531926",
-  image: "/images/default.jpeg",
-  dob: "2009-09-09"
-},
-%{
+users = [
+  %{
+    firstname: "admin",
+    lastname: "one",
+    email: "mbashiavictor@gmail.com",
+    location: "thika",
+    # In a real application, you'd hash the password
+    password: "123456",
+    status: "active",
+    role: "SuperAdmin",
+    phone_number: "254791531926",
+    image: "/images/default.jpeg",
+    dob: "2009-09-09"
+  },
+  %{
     firstname: "MBash",
     lastname: "Victor",
     email: "ojijo@gmail.com",
@@ -54,7 +54,8 @@ users = [%{
     phone_number: "254754531926",
     image: "/images/default.jpeg",
     dob: "2009-09-09"
-  }]
+  }
+]
 
 sport_params = %{
   name: "Football",
@@ -196,7 +197,6 @@ game_params = [
     user_id: 1
   }
 ]
-
 
 Games.insert_games(game_params)
 Sports.create_sport(sport_params)

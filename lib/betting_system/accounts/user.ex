@@ -45,7 +45,6 @@ defmodule BettingSystem.Accounts.User do
       Defaults to `true`.
   """
 
-  
   def registration_changeset(user, attrs, opts \\ []) do
     user
     |> cast(attrs, [:email, :password, :firstname, :lastname, :phone_number, :role, :status])

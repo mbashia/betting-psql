@@ -78,7 +78,7 @@ defmodule BettingSystemWeb.UserLive.Index do
     socket
     |> assign(:page_title, "Listing users")
     |> assign(:sport, nil)
-    |>assign(:clients, users)
+    |> assign(:clients, users)
   end
 
   def get_games(betid) do

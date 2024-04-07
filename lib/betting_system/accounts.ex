@@ -31,6 +31,7 @@ defmodule BettingSystem.Accounts do
       end)
     end)
   end
+
   def get_user_by_email(email) when is_binary(email) do
     Repo.get_by(User, email: email)
   end
