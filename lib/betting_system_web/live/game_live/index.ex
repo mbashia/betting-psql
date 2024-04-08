@@ -17,9 +17,9 @@ defmodule BettingSystemWeb.GameLive.Index do
     changeset = Bet.change_bets(%Bets{})
     # IO.inspect(socket, structs: false)
 
-    peer_data = get_connect_info(socket, :peer_data)
-    ip_addr = :inet_parse.ntoa(peer_data.address) |> to_string()
-    IO.inspect(ip_addr)
+    # peer_data = get_connect_info(socket, :peer_data)
+    # ip_addr = :inet_parse.ntoa(peer_data.address) |> to_string()
+    # IO.inspect(ip_addr)
 
     if_display =
       if Enum.count(selected_bets) == 0 do
@@ -41,6 +41,13 @@ defmodule BettingSystemWeb.GameLive.Index do
      |> assign(:length_bet, Enum.count(selected_bets))
      |> assign(:div_display, if_display)}
   end
+
+  defp multiply(a, b), do: a * b
+
+def calcluate_total_odds(list)do
+  Enum.reduce(list, 1, fn x, acc -> multiply(x, acc) end)
+end
+
 
   @impl true
   def handle_params(params, _url, socket) do
@@ -79,6 +86,8 @@ defmodule BettingSystemWeb.GameLive.Index do
         %{"odds" => odds, "id" => game_id, "type" => type, "value" => ""},
         socket
       ) do
+
+        ## check if there is betslip with that game id
     is_betslip = Betslips.check_betslip!(socket.assigns.user.id, game_id)
 
     if is_nil(is_betslip) do
@@ -97,7 +106,7 @@ defmodule BettingSystemWeb.GameLive.Index do
       case Betslips.create_betslip(betslip_params) do
         {:ok, _betslip} ->
           selected_bets = Betslips.get_betslips(socket.assigns.user.id)
-          total_odds = Enum.map(selected_bets, & &1.odds) |> Enum.sum()
+          total_odds = Enum.map(selected_bets, & &1.odds) |> calcluate_total_odds()
 
           if_display =
             if Enum.count(selected_bets) == 0 do
@@ -135,7 +144,7 @@ defmodule BettingSystemWeb.GameLive.Index do
       case Betslips.update_betslip(betslip, betslip_params) do
         {:ok, _betslip} ->
           selected_bets = Betslips.get_betslips(socket.assigns.user.id)
-          total_odds = Enum.map(selected_bets, & &1.odds) |> Enum.sum()
+          total_odds = Enum.map(selected_bets, & &1.odds) |> calcluate_total_odds()
 
           if_display =
             if Enum.count(selected_bets) == 0 do
@@ -214,7 +223,7 @@ defmodule BettingSystemWeb.GameLive.Index do
             "z-index:8; "
           end
 
-        total_odds = Enum.map(selected_bets, & &1.odds) |> Enum.sum()
+        total_odds = Enum.map(selected_bets, & &1.odds) |> calcluate_total_odds()
         IO.inspect(selected_bets)
 
         {:noreply,
