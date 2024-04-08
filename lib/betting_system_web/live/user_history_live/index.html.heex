@@ -28,7 +28,6 @@
         <span class="p-2 font-semibold ">Status</span>
 
         <span class="p-2 font-semibold ">Result</span>
-        <span class="p-2 font-semibold ">Profit</span>
       </div>
       <div class="flex flex-col justify-evenly">
         <%= for bet <- @bets do %>
@@ -41,7 +40,6 @@
             <div class="text-sm md:text-base  mb-4"><%= bet.status %></div>
             <div class="text-sm md:text-base  mb-4"><%= bet.end_result %></div>
 
-            <div class="text-sm md:text-base  mb-4"><%= get_profit(bet.bet_id) %></div>
 
             <div>
               <button
