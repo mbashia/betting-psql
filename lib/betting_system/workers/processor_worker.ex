@@ -79,9 +79,4 @@ defmodule BettingSystem.Workers.ProcessorWorker do
 
     IO.write("THE END")
   end
-
-  defp send_email do
-    # Logic to send an email
-    Emails.tester_email()
-  end
 end

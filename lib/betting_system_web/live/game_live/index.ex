@@ -44,10 +44,9 @@ defmodule BettingSystemWeb.GameLive.Index do
 
   defp multiply(a, b), do: a * b
 
-def calcluate_total_odds(list)do
-  Enum.reduce(list, 1, fn x, acc -> multiply(x, acc) end)
-end
-
+  def calcluate_total_odds(list) do
+    Enum.reduce(list, 1, fn x, acc -> multiply(x, acc) end)
+  end
 
   @impl true
   def handle_params(params, _url, socket) do
@@ -86,8 +85,7 @@ end
         %{"odds" => odds, "id" => game_id, "type" => type, "value" => ""},
         socket
       ) do
-
-        ## check if there is betslip with that game id
+    ## check if there is betslip with that game id
     is_betslip = Betslips.check_betslip!(socket.assigns.user.id, game_id)
 
     if is_nil(is_betslip) do

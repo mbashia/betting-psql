@@ -27,13 +27,11 @@ defmodule BettingSystemWeb.UserHistoryLive.Index do
     {:noreply, socket}
   end
 
-
-  def handle_event("filter",params,socket)do
-
-
-    bets=Bet.get_all_bets_by_filter(socket.assigns.user.id,params["filter"])
-    {:noreply,socket |> assign(:bets,bets)}
+  def handle_event("filter", params, socket) do
+    bets = Bet.get_all_bets_by_filter(socket.assigns.user.id, params["filter"])
+    {:noreply, socket |> assign(:bets, bets)}
   end
+
   defp get_games(betid) do
     Bet.get_all_betslips_in_bet(betid)
   end

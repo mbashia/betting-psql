@@ -8,16 +8,15 @@
         <span>View Bets</span>
       <% end %>
 
-
-       <div>
-      <.form let={f} for={%{}} id="search-form" phx-change="filter">
-        <%= select(f, :filter, [{"Wins", "win"}, {"Loses", "lost"},{"pending","nothing"}],
-          class:
-            "hover:cursor-pointer border-none rounded-md flex items-center justify-center mont-600 w-[190px] h-[35px]  bg-white text-[#707070] text-[#2B6777]  mont-600 text-center",
-          prompt: "filter Wins/Losses"
-        ) %>
-      </.form>
-    </div>
+      <div>
+        <.form let={f} for={%{}} id="search-form" phx-change="filter">
+          <%= select(f, :filter, [{"Wins", "win"}, {"Loses", "lost"}, {"pending", "nothing"}],
+            class:
+              "hover:cursor-pointer border-none rounded-md flex items-center justify-center mont-600 w-[190px] h-[35px]  bg-white text-[#707070] text-[#2B6777]  mont-600 text-center",
+            prompt: "filter Wins/Losses"
+          ) %>
+        </.form>
+      </div>
     </div>
     <div class="w-[100%] flex flex-col  text-white poppins-regular text-lg">
       <div class="flex justify-evenly">
@@ -39,7 +38,6 @@
             <div class="text-sm md:text-base  mb-4"><%= bet.payout %></div>
             <div class="text-sm md:text-base  mb-4"><%= bet.status %></div>
             <div class="text-sm md:text-base  mb-4"><%= bet.end_result %></div>
-
 
             <div>
               <button

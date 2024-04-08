@@ -84,29 +84,6 @@ defmodule BettingSystemWeb.UserLive.ViewUserComponent do
                 </div>
               </div>
             </div>
-            <div class="flex w-[100%]  md:flex-row flex-col  justify-between  gap-2">
-              <div class="flex md:w-[48%] w-[100%] flex-col gap-2">
-                <p class="text-[#707070]  mont-500">
-                  Dob
-                </p>
-                <div class=" text-[#707070]">
-                  <div class="mont-500 w-[100%] bg-[#EBEBEB] focus:border-gray-800 focus:ring-gray-800 border-0 rounded-md p-3">
-                    <%= @user_to_view.dob %>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex md:w-[48%] w-[100%] flex-col gap-2">
-                <p class="text-[#707070]  mont-500">
-                  Age
-                </p>
-                <div class="text-[#707070]">
-                  <div class="mont-500 w-[100%] bg-[#EBEBEB] focus:border-gray-800 focus:ring-gray-800 border-0 rounded-md p-3">
-                    <%= @user_to_view.phone_number %>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div class="flex w-[100%]  md:flex-row flex-col  justify-between  gap-2">
               <div class="flex md:w-[48%] w-[100%] flex-col gap-2">
