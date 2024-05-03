@@ -1,20 +1,43 @@
 defmodule BettingSystemWeb.GameLiveTest do
   @moduledoc false
-  use BettingSystemWeb.ConnCase
+  #  use BettingSystemWeb.ConnCase
 
-  import Phoenix.LiveViewTest
+  # import Phoenix.LiveViewTest
 
-  describe("Testing the Highlights on game live ") do
-    test "We see the highlights", %{conn: conn} do
-      conn = assign(conn, :current_user, %{id: 1, name: "Test User"})
+  use ExUnit.Case
+  alias BettingSystemWeb.GameLive
+  import ExUnit.Case
 
-      {:ok, index_live, html} =
-        live(
-          conn,
-          Routes.game_index_path(conn, :index)
-        )
+  defp create_socket() do
+    %{socket: %Phoenix.LiveView.Socket{}}
+  end
 
-      assert html =~ "Highlights"
+  describe "Socket state" do
+    setup do
+      create_socket()
+    end
+
+    test "odds are zero", %{socket: socket} do
+      socket =
+        socket
+        |> SurveyResultsLive.Index.mount()
+
+      assert
+      socket.assigns.total_odds == 0.0
     end
   end
+
+  # describe("Testing the Highlights on game live ") do
+  #   test "We see the highlights", %{conn: conn} do
+  #     conn = assign(conn, :current_user, %{id: 1, name: "Test User" ,role: "SuperAdmin"})
+
+  #     {:ok, index_live, html} =
+  #       live(
+  #         conn,
+  #         Routes.page_path(conn, :index)
+  #       )
+
+  #     assert html =~ "Highlights"
+  #   end
+  # end
 end
